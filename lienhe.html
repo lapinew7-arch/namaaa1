@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Liên hệ - Smartphone Shop</title>
+  <style>
+    :root {
+      --main-color: #007aff;
+      --bg-light: #f4f7fb;
+      --bg-dark: #0b1120;
+      --text-light: #333;
+      --text-dark: #f4f4f4;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg-light);
+      color: var(--text-light);
+      margin: 0;
+      transition: 0.4s;
+    }
+
+    #sidebar {
+      position: fixed;
+      top: 0; left: -250px;
+      width: 250px;
+      height: 100%;
+      background: var(--main-color);
+      color: white;
+      transition: 0.3s;
+      padding-top: 60px;
+      box-shadow: 3px 0 10px rgba(0,0,0,0.2);
+    }
+    #sidebar a {
+      display: block;
+      padding: 15px 25px;
+      color: white;
+      text-decoration: none;
+    }
+    #sidebar a:hover { background: rgba(255,255,255,0.2); }
+    #openSidebar {
+      position: fixed;
+      top: 15px; left: 15px;
+      background: var(--main-color);
+      color: white;
+      border: none;
+      padding: 12px 14px;
+      font-size: 20px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .toggle-dark {
+      position: fixed;
+      top: 15px;
+      right: 15px;
+      background: var(--main-color);
+      color: white;
+      border: none;
+      padding: 10px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    header {
+      text-align: center;
+      padding: 70px 20px 30px;
+    }
+    header h1 {
+      color: var(--main-color);
+      font-size: 2.3em;
+    }
+
+    .contact-container {
+      max-width: 900px;
+      margin: auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 20px;
+    }
+
+    form {
+      flex: 1;
+      min-width: 300px;
+      background: white;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+      transition: 0.3s;
+    }
+    form input, textarea {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 1em;
+      outline: none;
+    }
+    form button {
+      background: var(--main-color);
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    form button:hover {
+      background: #0051c9;
+      transform: scale(1.05);
+    }
+
+    iframe {
+      flex: 1;
+      min-width: 300px;
+      border: none;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+    }
+
+    .social {
+      text-align: center;
+      margin-top: 40px;
+    }
+    .social a {
+      margin: 0 10px;
+      font-size: 25px;
+      color: var(--main-color);
+      text-decoration: none;
+      transition: 0.3s;
+    }
+    .social a:hover {
+      transform: scale(1.2);
+    }
+
+    .dark {
+      background: var(--bg-dark);
+      color: var(--text-dark);
+    }
+    .dark form {
+      background: #101828;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <button id="openSidebar">☰</button>
+  <button class="toggle-dark">🌗</button>
+
+  <div id="sidebar">
+    <a href="aa.html">🏠 Trang chủ</a>
+    <a href="gioithieu.html">🏢 Giới thiệu</a>
+    <a href="lienhe.html">📩 Liên hệ</a>
+  </div>
+
+  <header>
+    <h1>Liên hệ với Smartphone Shop</h1>
+    <p>Chúng tôi luôn sẵn sàng hỗ trợ bạn 24/7</p>
+  </header>
+
+  <div class="contact-container">
+    <form>
+      <input type="text" placeholder="Họ và tên" required>
+      <input type="email" placeholder="Email của bạn" required>
+      <textarea rows="5" placeholder="Nội dung liên hệ..." required></textarea>
+      <button type="submit">Gửi ngay ✉️</button>
+    </form>
+
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.502583406221!2d106.70042317465487!3d10.772032259279348!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f3a97e0a1a3%3A0xdda8d34a8f53b!2zQ2hpIFRydW5nIFTDom4!5e0!3m2!1svi!2s!4v1696500000000!5m2!1svi!2s"
+      width="100%" height="400" allowfullscreen loading="lazy"></iframe>
+  </div>
+
+  <div class="social">
+    <a href="#">📘</a>
+    <a href="#">🎵</a>
+    <a href="#">💬</a>
+  </div>
+
+  <script>
+    const sidebar = document.getElementById('sidebar');
+    document.getElementById('openSidebar').onclick = () => {
+      sidebar.style.left = sidebar.style.left === '0px' ? '-250px' : '0px';
+    };
+    document.querySelector('.toggle-dark').onclick = () => {
+      document.body.classList.toggle('dark');
+    };
+  </script>
+</body>
+</html>
