@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cửa hàng Luxury Bags</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        background: #f8f9fa;
+        color: #222;
+        transition: background 0.4s, color 0.4s;
+      }
+
+      /* HEADER */
+      header {
+        width: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        backdrop-filter: blur(10px);
+        background: rgba(255, 255, 255, 0.7);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        transition: 0.4s;
+      }
+
+      .nav-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 15px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-size: 22px;
+        font-weight: 600;
+        color: #0077ff;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+      }
+
+      nav ul {
+        list-style: none;
+        display: flex;
+        gap: 25px;
+      }
+
+      nav a {
+        text-decoration: none;
+        color: #222;
+        font-weight: 500;
+        transition: 0.3s;
+      }
+
+      nav a:hover {
+        color: #0077ff;
+      }
+
+      .icons {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        font-size: 20px;
+        cursor: pointer;
+      }
+
+      .dark-mode-toggle {
+        border: none;
+        background: none;
+        cursor: pointer;
+        font-size: 20px;
+        color: #0077ff;
+      }
+
+      /* WRAPPER */
+      #wrapper {
+        max-width: 1200px;
+        margin: 120px auto 60px;
+        padding: 0 20px;
+      }
+
+      .headline {
+        text-align: center;
+        margin-bottom: 50px;
+      }
+
+      .headline h3 {
+        font-size: 28px;
+        font-weight: 600;
+        position: relative;
+        display: inline-block;
+      }
+
+      .headline h3::after {
+        content: "";
+        width: 80px;
+        height: 3px;
+        background: #0077ff;
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        border-radius: 5px;
+      }
+
+      /* PRODUCT GRID */
+      ul.products {
+        list-style: none;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 30px;
+      }
+
+      ul.products li {
+        background: #fff;
+        border-radius: 14px;
+        overflow: hidden;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        transition: all 0.4s ease;
+        transform: translateY(30px);
+        opacity: 0;
+      }
+
+      ul.products li.visible {
+        transform: translateY(0);
+        opacity: 1;
+      }
+
+      ul.products li:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      }
+
+      .product-top {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .product-top img {
+        width: 85%;
+        height: 250px;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+
+      .product-item:hover img {
+        transform: scale(1.1);
+      }
+
+      .buy-now {
+        position: absolute;
+        bottom: -100%;
+        left: 0;
+        width: 100%;
+        background: rgba(0, 119, 255, 0.9);
+        color: #fff;
+        text-align: center;
+        padding: 12px 0;
+        font-weight: 500;
+        transition: all 0.4s ease;
+        text-decoration: none;
+        letter-spacing: 1px;
+      }
+
+      .product-item:hover .buy-now {
+        bottom: 0;
+      }
+
+      .product-info {
+        text-align: center;
+        padding: 18px 10px 25px;
+      }
+
+      .product-info a {
+        text-decoration: none;
+      }
+
+      .product-cat {
+        font-size: 12px;
+        text-transform: uppercase;
+        color: #999;
+        display: block;
+        margin-bottom: 6px;
+      }
+
+      .product-name {
+        font-size: 17px;
+        color: #333;
+        font-weight: 500;
+        margin-bottom: 8px;
+        transition: 0.3s;
+      }
+
+      .product-name:hover {
+        color: #0077ff;
+      }
+
+      .product-price {
+        font-size: 15px;
+        font-weight: 600;
+        color: #111;
+      }
+
+      footer {
+        text-align: center;
+        padding: 25px 10px;
+        margin-top: 60px;
+        background: #111;
+        color: #fff;
+        font-size: 14px;
+      }
+
+      /* DARK MODE */
+      body.dark {
+        background: #0d1117;
+        color: #e6edf3;
+      }
+
+      body.dark header {
+        background: rgba(22, 27, 34, 0.9);
+      }
+
+      body.dark .logo {
+        color: #60a5fa;
+      }
+
+      body.dark nav a {
+        color: #e6edf3;
+      }
+
+      body.dark ul.products li {
+        background: #161b22;
+        box-shadow: 0 5px 20px rgba(255, 255, 255, 0.05);
+      }
+
+      body.dark .product-name {
+        color: #e6edf3;
+      }
+
+      body.dark .product-price {
+        color: #fff;
+      }
+
+      body.dark footer {
+        background: #000;
+        color: #ccc;
+      }
+
+      @media (max-width: 768px) {
+        nav ul {
+          display: none;
+        }
+      }
+      .btn-explore {
+  display: inline-block;
+  padding: 12px 28px;
+  background: linear-gradient(90deg, #007bff, #00b4ff);
+  color: #fff;
+  border-radius: 30px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  margin-top: 40px;
+}
+
+.btn-explore:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 15px rgba(0,123,255,0.4);
+}
+
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <div class="nav-container">
+        <div class="logo">Smartphone Shop</div>
+        <nav>
+          <ul>
+            <li><a href="index.html">Trang chủ</a></li>
+            <li><a href="sanpham.html">Sản phẩm</a></li>
+            <li><a href="gioithieu.html">Giới thiệu</a></li>
+            <li><a href="lienhe.html">Liên hệ</a></li>
+          </ul>
+        </nav>
+        <div class="icons">
+          <div class="cart">🛒</div>
+          <button class="dark-mode-toggle" id="toggleTheme">🌙</button>
+        </div>
+      </div>
+    </header>
+    <div id="wrapper">
+      <div class="headline">
+        <h3>Sản phẩm nổi bật</h3>
+      </div>
+
+      <ul class="products">
+        <li>
+          <div class="product-item">
+            <div class="product-top">
+              <a href="#" class="product-thumb">
+                <img src="/iphone15 pro.webp" alt="iphone15" />
+              </a>
+              <a href="#" class="buy-now">Mua ngay</a>
+            </div>
+            <div class="product-info">
+              <a href="#" class="product-cat">Bags</a>
+              <a href="#" class="product-name">iphone 15 Pro</a>
+              <div class="product-price">16.999.000 VNĐ</div>
+            </div>
+          </div>
+        </li>
+
+        <li>
+          <div class="product-item">
+            <div class="product-top">
+              <a href="#" class="product-thumb">
+                <img src="/iphone15 Plus.webp" alt="iphone 15 Plus" />
+              </a>
+              <a href="#" class="buy-now">Mua ngay</a>
+            </div>
+            <div class="product-info">
+              <a href="#" class="product-cat">Bags</a>
+              <a href="#" class="product-name">iphone 15 Plus</a>
+              <div class="product-price">16.490.000 VNĐ</div>
+            </div>
+          </div>
+        </li>
+
+        <li>
+          <div class="product-item">
+            <div class="product-top">
+              <a href="#" class="product-thumb">
+                <img src="/iphone15 256GB.webp" alt="iphone" />
+              </a>
+              <a href="#" class="buy-now">Mua ngay</a>
+            </div>
+            <div class="product-info">
+              <a href="#" class="product-cat">Bags</a>
+              <a href="#" class="product-name">iphone15 256GB</a>
+              <div class="product-price">18.290.000 VNĐ</div>
+            </div>
+          </div>
+        </li>
+
+        <li>
+          <div class="product-item">
+            <div class="product-top">
+              <a href="#" class="product-thumb">
+                <img src="/iphone15 128GB.webp" alt="iphone" />
+              </a>
+              <a href="#" class="buy-now">Mua ngay</a>
+            </div>
+            <div class="product-info">
+              <a href="#" class="product-cat">Bags</a>
+              <a href="#" class="product-name">iphonw 15 128GB</a>
+              <div class="product-price">890.000 VNĐ</div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <footer>© 2025 Luxury Bags | Thiết kế bởi Nam</footer>
+
+    <script>
+      // Hiệu ứng xuất hiện khi cuộn
+      const items = document.querySelectorAll("ul.products li");
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+            }
+          });
+        },
+        { threshold: 0.1 }
+      );
+      items.forEach((item) => observer.observe(item));
+
+      // Chuyển dark mode
+      const toggleTheme = document.getElementById("toggleTheme");
+      toggleTheme.addEventListener("click", () => {
+        document.body.classList.toggle("dark");
+        toggleTheme.textContent = document.body.classList.contains("dark")
+          ? "☀️"
+          : "🌙";
+      });
+  document.querySelector('.btn-explore').addEventListener('click', function(e) {
+    e.preventDefault(); // chặn hành động mặc định
+    document.querySelector('#products-section').scrollIntoView({
+      behavior: 'smooth'  // cuộn mượt
+    });
+  });
+    </script>
+  </body>
+</html>
